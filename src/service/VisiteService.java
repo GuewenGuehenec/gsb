@@ -10,7 +10,6 @@ public class VisiteService {
 
 	public static void VisiteServiceReference(String data) {
 		boolean reference = VisiteDao.rechercher(data);
-		System.out.println(reference);
 		try {
 			if(reference == true) {
 				JOptionPane.showMessageDialog(null,"La référence saisie existe déjà !","Alert",JOptionPane.WARNING_MESSAGE);

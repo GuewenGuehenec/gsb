@@ -90,7 +90,6 @@ public class VisiteDao {
 	}
 	
 	public static boolean rechercher(String data) {
-		System.out.println(data);
 		String requete = "select * from visite where REFERENCE ='"+data+"';";
 		ResultSet reqSelection = ConnexionMySql.execReqSelection(requete);
 		boolean resultReference = false;

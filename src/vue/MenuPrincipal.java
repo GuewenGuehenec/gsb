@@ -100,7 +100,6 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 		// TODO Raccord de méthode auto-généré
 		if (evt.getSource() instanceof JMenuItem) {
 			String ChoixOption = evt.getActionCommand();
-			System.out.println(ChoixOption);
 			if (ChoixOption.equals("Consultation Medecin")) {
 				// Creation d'une sous-fenêtre
 				ouvrirFenetre(new JIFMedecinCons());

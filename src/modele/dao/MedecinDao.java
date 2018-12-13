@@ -122,8 +122,6 @@ public class MedecinDao {
 		try {
 			if (reqSelection.next()) {
 				String matricule = reqSelection.getString(1);
-				System.out.println(data);
-				System.out.println(matricule);
 				if (data.equals(matricule)) {
 					ResultCodMed = true;
 				}
@@ -132,7 +130,6 @@ public class MedecinDao {
 			JOptionPane.showMessageDialog(null,"Une erreur est survenue lors de la recherche du Matricule ! ","Alert",JOptionPane.WARNING_MESSAGE);
 			e.printStackTrace();
 		}	
-		System.out.println(ResultCodMed);
 		return ResultCodMed;
 
 		

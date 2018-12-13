@@ -13,8 +13,6 @@ public class VisiteurDao {
 		try {
 			if (reqSelection.next()) {
 				String matricule = reqSelection.getString(1);
-				System.out.println(matricule);
-				System.out.println(data);
 				if (data != matricule) {
 					resultMatricule = true;
 				}
