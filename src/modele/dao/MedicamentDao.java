@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 public class MedicamentDao {
 	
 	public static Medicament rechercher(String codeMedicament) {
-		ResultSet reqSelection = ConnexionMySql.execReqSelection("select * from MEDICAMENT where MED_DEPOTLEGAL ='"+codeMedicament+"'");
+		ResultSet reqSelection = ConnexionMySql.execReqSelection("select * from medicament where med_depotlegal ='"+codeMedicament+"'");
 		Medicament unMedicament = null;
 		try {
 			if (reqSelection.next()) {
@@ -28,7 +28,7 @@ public class MedicamentDao {
 	
 	public static ArrayList<Medicament> retournerCollectionDesMedicaments(){
 		ArrayList<Medicament> collectionDesMedicaments = new ArrayList<Medicament>();
-		ResultSet reqSelection = ConnexionMySql.execReqSelection("select MED_DEPOTLEGAL from MEDICAMENT");
+		ResultSet reqSelection = ConnexionMySql.execReqSelection("select med_depotlegal from medicament");
 		try{
 			while (reqSelection.next()) {
 				String codeMedicament = reqSelection.getString(1);
@@ -45,15 +45,15 @@ public class MedicamentDao {
 	public static void ajouterQuantite(String codeVisiteur, String depotLegal, String strQuantite) {
 		int quantite = Integer.parseInt(strQuantite);
 		int bddQuantite;
-		ResultSet reqQuantite = ConnexionMySql.execReqSelection("select quantite from stock where idVisiteur='"+codeVisiteur+"' and idMedicament='"+depotLegal+"' ;");
+		ResultSet reqQuantite = ConnexionMySql.execReqSelection("select quantite from stock where idvisiteur='"+codeVisiteur+"' and idmedicament='"+depotLegal+"' ;");
 		try {
 			if(reqQuantite.next()){
 				bddQuantite = Integer.parseInt(reqQuantite.getString(1));
 				int nouvelleQuantite = bddQuantite + quantite;
-				ConnexionMySql.execReqMaj("update stock set quantite="+nouvelleQuantite+" where idVisiteur='"+codeVisiteur+"' and idMedicament='"+depotLegal+"' ;");
+				ConnexionMySql.execReqMaj("update stock set quantite="+nouvelleQuantite+" where idvisiteur='"+codeVisiteur+"' and idmedicament='"+depotLegal+"' ;");
 			}
 			else{
-				ConnexionMySql.execReqMaj("insert into stock (idVisiteur, idMedicament, quantite) values ('"+codeVisiteur+"','"+depotLegal+"',"+quantite+");");
+				ConnexionMySql.execReqMaj("insert into stock (idvisiteur, idmedicament, quantite) values ('"+codeVisiteur+"','"+depotLegal+"',"+quantite+");");
 			}
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block

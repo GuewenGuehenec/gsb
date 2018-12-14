@@ -29,7 +29,7 @@ public class VisiteDao {
 	public static String retournerDateDerniereVisite(String codeMedecin) {
 		String dateVisite = null;
 		
-		ResultSet reqSelection = ConnexionMySql.execReqSelection("select max(DATEVISITE) from visite where CODEMED = '"+codeMedecin+"';");
+		ResultSet reqSelection = ConnexionMySql.execReqSelection("select max(datevisite) from visite where codemed = '"+codeMedecin+"';");
 		try {
 			while (reqSelection.next()) {
 				dateVisite = reqSelection.getString(1);
@@ -46,7 +46,7 @@ public class VisiteDao {
 	// RETOURNER COLLECTION VISITE EN RETARD
 	public static ArrayList<Medecin> retournerCollectionVisiteEnRetard() {
 		ArrayList<Medecin> collectionVisiteEnRetard = new ArrayList<Medecin>();
-		ResultSet reqSelection = ConnexionMySql.execReqSelection("select medecin.codemed, max(ifnull(visite.DATEVISITE,null)) as datevisite from medecin left join visite on medecin.codemed = visite.codemed group by codemed having (max(ifnull(visite.DATEVISITE,0))=0) or (timestampdiff(MONTH, max(ifnull(visite.DATEVISITE,0)), curdate()) > 8 )");
+		ResultSet reqSelection = ConnexionMySql.execReqSelection("select medecin.codemed, max(ifnull(visite.datevisite,null)) as datevisite from medecin left join visite on medecin.codemed = visite.codemed group by codemed having (max(ifnull(visite.datevisite,0))=0) or (timestampdiff(month, max(ifnull(visite.datevisite,0)), curdate()) > 8 )");
 		/*ResultSet reqSelection = ConnexionMySql.execReqSelection("select medecin.codemed, max(visite.DATEVISITE) from medecin left join visite on medecin.codemed = visite.codemed where (timestampdiff(MONTH, datevisite, curdate()) > 8 ) OR (isnull(datevisite) = 1) group by codemed;");*/
 		try{
 		while (reqSelection.next()) {
@@ -90,7 +90,7 @@ public class VisiteDao {
 	}
 	
 	public static boolean rechercher(String data) {
-		String requete = "select * from visite where REFERENCE ='"+data+"';";
+		String requete = "select * from visite where reference ='"+data+"';";
 		ResultSet reqSelection = ConnexionMySql.execReqSelection(requete);
 		boolean resultReference = false;
 		try {

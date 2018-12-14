@@ -25,7 +25,7 @@ public class LocaliteDao {
 	
 	public static Localite rechercher(String codeLocalite){
 		Localite uneLocalite=null;
-		ResultSet reqSelection = ConnexionMySql.execReqSelection("select * from LOCALITE where CODEPOSTAL='"+codeLocalite+"'");
+		ResultSet reqSelection = ConnexionMySql.execReqSelection("select * from localite where codepostal='"+codeLocalite+"'");
 		try {
 			if (reqSelection.next()) {
 				uneLocalite = new Localite(reqSelection.getString(2), reqSelection.getString(3));	
@@ -41,7 +41,7 @@ public class LocaliteDao {
 	
 	public static ArrayList<Localite> retournerListeVilleCp(String unCodeLocalite){
 		ArrayList<Localite> collectionDesLocaliteCp = new ArrayList<Localite>();
-		ResultSet reqSelection = ConnexionMySql.execReqSelection("select * from LOCALITE where CODEPOSTAL='"+unCodeLocalite+"'");
+		ResultSet reqSelection = ConnexionMySql.execReqSelection("select * from localite where codepostal='"+unCodeLocalite+"'");
 		try {
 			while (reqSelection.next()) {
 				Localite ville = new Localite();
