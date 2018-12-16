@@ -115,9 +115,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}		
-			} else if (ChoixOption.equals("Liste Medecins")) {
-				ouvrirFenetre(new JIFMedecinListeDic(this));
+				}
 			} else if (ChoixOption.equals("Consultation Medicament")) {
 				ouvrirFenetre(new JIFMedicamentCons(this));
 			} else if (ChoixOption.equals("Ajout Medicaments")) {
